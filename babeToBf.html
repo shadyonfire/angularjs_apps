@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html ng-app="babe" ng-controller="ctrl">
+<head>
+<!--loading angular framework and a css for icon only-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+
+</style>
+</head>
+<body ng-keydown="pressed($event)">
+<div style="width:100%;background-color:green;position:absolute;height:600px" ng-cloak >
+	<div ng-class="start()"></div>
+	<div style="color:white;left:30%;position:absolute;font-size:35px">{{msg}}</div>
+	<span ng-style="m()" style="font-size:35px" class="fa fa-female"></span>
+	<span style="font-size:30px;top:5%;left:5%;position:absolute;" class="fa fa-home"></span>
+	<span style="font-size:25px;top:40%;left:7%;position:absolute;" class="fa fa-key"></span>
+	<span style="font-size:25px;top:15%;left:7%;position:absolute;" class="fa fa-phone"></span>
+	<span style="font-size:25px;top:25%;left:27%;position:absolute;" class="fa fa-car"></span>
+	<span style="font-size:35px;top:15%;left:92%;position:absolute;" class="fa fa-male"></span>
+	<span style="font-size:25px;top:75%;left:47%;position:absolute;" class="fa fa-gift"></span>
+	<span style="font-size:25px;top:45%;left:57%;position:absolute;" class="fa fa-institution"></span>
+	<span style="font-size:25px;top:16%;left:91%;position:absolute;color:white;font-size:15px" class="fa fa-coffee"></span>
+	<span style="font-size:25px;top:65%;left:47%;position:absolute;" class="fa fa-flower"></span>
+	<span style="font-size:25px;top:15%;left:47%;position:absolute;" class="fa fa-tree"></span>
+	<span style="font-size:25px;top:57%;left:58%;position:absolute;" class="fa fa-tree"></span>
+	<span style="font-size:25px;top:61%;left:19%;position:absolute;" class="fa fa-tree"></span>
+	<span style="font-size:25px;top:92%;left:43%;position:absolute;" class="fa fa-tree"></span>
+	<span style="font-size:25px;top:83%;left:33%;position:absolute;" class="fa fa-tree"></span>
+	<span style="font-size:25px;top:85%;left:13%;position:absolute;" class="fa fa-tree"></span>
+	<span style="font-size:25px;top:85%;left:37%;position:absolute;" class="fa fa-tree"></span>
+	<span style="font-size:25px;top:15%;left:27%;position:absolute;" class="fa fa-tree"></span>
+	
+
+	
+	<table style="position:relative;top:75%;left:85%;">
+	<tr><td></td><td><button ng-click="up()"><img src="images/up.png" width="25px"></button></td><td></td></tr>
+	<tr><td><button ng-click="left()"><img src="images/left.png" width="25px"></button></td><td><button ng-click="ok()"><img src="images/ok.jpg" width="25px"></button></td><td><button ng-click="right()"><img src="images/right.png" width="25px"></button></td></tr>
+	<tr><td></td><td><button ng-click="down()"><img src="images/down.png" width="25px"></button></td><td></td></tr>
+	</table>
+	
+		
+		
+
+	</div>
+
+
+<script>
+	//module
+	
+	var app=angular.module("babe",[]);	
+	//controller
+	app.controller("ctrl",ctrl);
+	ctrl.$inject=["$scope"];
+	function ctrl($scope){
+		var t_al=5;
+		var l_al=5;
+		$scope.msg="Welcome";
+		var pos=0;
+		$scope.m=function(){
+			if(t_al==5 && l_al==5)
+				return {color:'green',position:'absolute',top:t_al+"%",left:l_al+'%'};
+			else
+				return {color:'white',position:'absolute',top:t_al+"%",left:l_al+'%'};
+			
+		}
+	
+		$scope.up=function(){
+			if(t_al>5){
+				t_al=t_al-5;
+			}
+		}
+		$scope.down=function(){
+			if(t_al<95)
+			t_al+=5;
+		}
+		$scope.left=function(){
+			if(l_al>5)
+				l_al-=5;
+		}
+		$scope.right=function(){
+			if(l_al<95)
+				l_al+=5;
+		}
+		$scope.ok=function(){
+			if(t_al==15 && l_al==5 &&pos==0){
+				pos+=1;
+				$scope.msg="hello baby.i want to meet you,comeover";
+			}
+			else if(t_al==40 && l_al==5 &&pos==1){
+				pos+=1;
+				$scope.msg="key!!!!";
+			}
+			else if(t_al==25 && l_al==25 &&pos==2){
+				pos+=1;
+				$scope.msg="now drive to me";
+			}
+			else if(t_al==75 && l_al==45 &&pos==3){
+				pos+=1;
+				$scope.msg="gift bought|";
+			}
+			else if(t_al==15 && l_al==90 &&pos==4){
+				$scope.msg="I LOVE YOU";
+			}
+			else{
+				msgs();
+			}
+			
+		}
+		var msgs=function(){
+			if(pos==0){
+			$scope.msg="get the call first";
+			}
+			else if(pos==1){
+			$scope.msg="get the key baby";
+			}
+			else if(pos==2){
+			$scope.msg="get in car..";
+			}
+			else if(pos==3){
+			$scope.msg="will not you buy gift???";
+			}
+			else if(pos==4){
+			$scope.msg="where am i??";
+			}
+		}
+		$scope.pressed=function(k){
+			var x=k.keyCode;
+			if(x==38){$scope.up();}
+			else if(x==40){$scope.down();}
+			else if(x==37){$scope.left();}
+			else if(x==39){$scope.right();}
+			else if(x==13){$scope.ok()}
+		}
+	}
+	
+	
+
+</script>
+</body>
+</html>
