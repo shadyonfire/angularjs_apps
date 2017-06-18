@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="snake.js"></script>
+<link rel="stylesheet" href="snake.css">
+</head>
+
+<body ng-app="snake" ng-controller="ctrl" ng-keydown="move($event)">
+	<div class="start"  ng-hide="started">
+	<div style="color:white;position:absolute;font-size:50px;font-family:monotype corsiva;top:10%;left:30%">Snake Game<br>by<br>SHAILESH</div>
+	<div class="start-btn" ng-click="initiate()">Start</div>
+		</div>
+	<div ng-show="okstart" style="background-color:black;height:35px;font-weight:bold;font-size:30px;width:450px;color:white;border:1px solid white;text-align:center">
+		score {{score}}
+	</div>
+	
+	<div ng-if="okstart" ng-repeat="col in board" class="column">
+		<div ng-style="{'background-color':curcolor($parent.$index,$index)}" class="row" ng-repeat="row in col track by $index">
+		</div>
+		
+	</div>
+	<div class="start"  ng-show="over">
+	<div style="color:white;position:absolute;font-size:50px;font-family:monotype corsiva;top:20%;left:20%">GAME OVER !</div>
+	
+	<div style="color:white;position:absolute;font-size:50px;font-family:monotype corsiva;top:60%;left:30%">your score is <span style="background-color:yellow;color:blue;width:60px">{{score}}</span> !!!</div>
+		</div>
+	
+	
+</body>
+</html>	

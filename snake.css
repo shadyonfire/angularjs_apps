@@ -1,0 +1,27 @@
+.row{
+width:15px;
+height:15px;
+}
+.column{
+float:left;
+}
+
+.start{
+background-color:black;
+height:500px;
+width:500px;
+position:relative;
+}
+.start-btn{
+border:2px solid white;
+height:50px;
+width:150px;
+border-radius:20%;
+text-align:center;
+top:60%;
+left:38%;
+font-size:50px;
+background-color:black;
+color:white;
+position:absolute;
+}
