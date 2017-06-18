@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="slideshow" ng-controller="ctrl">
+<head>
+<!--loading angular framework and a css for icon only-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="slideshow.js"></script>
+<style>
+//styling the span..actually no need
+.dot {
+  height: 50px;
+  width: 50 px;
+  margin: 0 2px;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+//this class returns black color
+.black{
+color:black;
+}
+
+.red{
+color:red;
+}
+</style>
+</head>
+<body>
+
+<div style="width:100%">
+
+<div ng-repeat="i in image_details" style="position:relative">
+	<div style="position:absolute;top:90%;left:35%" ng-show="isindex($index)">
+		
+		<span class="dot" style="font-size:38px;" ng-class="$index==0?'fa fa-car black':'fa fa-heart red'" ng-click="currentindex=0"></span> 
+		<span class="dot" style="font-size:38px;" ng-class="$index==1?'fa fa-car black':'fa fa-heart red'" ng-click="currentindex=1"></span> 
+		<span class="dot" style="font-size:38px;" ng-class="$index==2?'fa fa-car black':'fa fa-heart red'" ng-click="currentindex=2"></span> 
+		<span class="dot" style="font-size:38px;" ng-class="$index==3?'fa fa-car black':'fa fa-heart red'" ng-click="currentindex=3"></span> 
+		<span class="dot" style="font-size:38px;" ng-class="$index==4?'fa fa-car black':'fa fa-heart red'" ng-click="currentindex=4"></span> 
+  
+
+	</div>
+	<button ng-click="prev()" ng-show="isindex($index)" style="position:absolute;top:40%;left:10px"><img src="images/left_nav.png" width="30px"></button>
+	<p ng-show="isindex($index)" style="position:absolute;top:2%;background-color:white;left:40%;font-size:20px;color:blue">Created by shailesh(shadyonfire)<br>USING html,css,angularjs,JSON</p>
+	<p ng-show="isindex($index)" style="position:absolute;top:5%;left:40%;font-size:48px">{{i.desc}}</p>
+	<img src="{{i.image}}"  ng-show="isindex($index)" width="100%">
+	<button ng-click="next()" ng-show="isindex($index)" style="position:absolute;top:40%;left:90%"><img src="images/right_nav.png" width="30px"></button>
+	
+</div>
+
+</div>
+
+
+</body>
+</html>

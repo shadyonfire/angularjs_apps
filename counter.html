@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+<script src="counter.js"></script>
+</head>
+<body  ng-app="app" ng-controller="ctrl">
+enter the second<input type="text" ng-model="x" ><button ng-click="co()">start</button>
+<p ng-model="to" ng-bind="to">
+<p ng-show="x" ng-cloak ng-repeat="i in jarr">
+{{i.h}}:{{i.m}}:{{i.s}}
+</p>
+</p>
+</body>
+</html>
