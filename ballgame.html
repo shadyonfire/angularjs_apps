@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<style>
+.row{
+width:30px;
+height:30px;
+}
+.column{
+float:left;
+}
+
+.start{
+background-color:black;
+height:500px;
+width:500px;
+position:relative;
+}
+.start-btn{
+border:2px solid white;
+height:50px;
+width:150px;
+border-radius:20%;
+text-align:center;
+top:60%;
+left:38%;
+font-size:50px;
+background-color:black;
+color:white;
+position:absolute;
+}
+
+</style>
+</head>
+
+<body ng-app="snake" ng-controller="ctrl" ng-keydown="move($event)">
+	<div  ng-repeat="col in board" class="column">
+		<div ng-style="{'background-color':curcolor($parent.$index,$index)}" class="row" ng-repeat="row in col track by $index">
+		</div>
+		
+	</div>
+	
+<script>
+var app=angular.module("snake",[]);	
+	//controller
+	var BOARD_SIZE=20;
+	app.controller("ctrl",ctrl);
+	ctrl.$inject=["$scope","$timeout"];
+	function ctrl($scope,$timeout){
+		//setting the JSON object array of default color
+		colour={"ball":"red","wall":"green","end":"yellow","board":"black"};	
+		var gameOver=false;
+		var pad;
+		var ballpos=[];
+		//setting up the board
+		var setupBoard=function() {
+			$scope.board = [];
+			for (var i = 0; i < BOARD_SIZE; i++) {
+					$scope.board[i] = [];
+					for (var j = 0; j < BOARD_SIZE; j++) {
+						$scope.board[i][j] = false;
+					}
+				}
+			}	
+		//to generate the pad in start of the gameOver
+		var	 genpad=function(){
+			pad=Math.floor((1,Math.random()*(BOARD_SIZE-1)));
+			
+		}
+		//generate ball
+		var ball=function(){
+			ballpos[0]=BOARD_SIZE-2;
+			ballpos[1]=pad;
+		}
+		//setting background-color
+		$scope.curcolor=function(col,row){
+			
+			if(gameOver){
+				return "blue";
+			}
+			else if(row==0)
+				return "green";
+			else if(row==BOARD_SIZE-1){
+				if(col==pad || col==pad-1 || col==pad+1  || col==pad-2 || col==pad+2){
+				return "yellow";}
+				else
+				return "black";
+			}
+			else if(row==ballpos[0] && col==ballpos[1])
+				return "transparent";
+			else
+				return colour.board;
+		}
+		//adding head and removing tail
+		$scope.move=function(x){
+			if(x.key=="ArrowRight" && pad<BOARD_SIZE-3){
+				pad+=1;
+			}
+			if(x.key=="ArrowLeft" && pad>2){
+				pad-=1;
+			}
+			
+		}
+		
+		$scope.initiate=function(){
+			setupBoard();
+			genpad();
+			ball();
+		}
+		
+		$scope.initiate();
+	}
+</script>
+</body>
+</html>	
