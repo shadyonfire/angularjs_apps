@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="keytest" ng-controller="ctrl">
+<head>
+<!--loading angular framework and a css for icon only-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+
+</head>
+<body ng-keydown="keytest($event)" ng-mousemove="mouseloc($event)" style="height:1000px;width:1000px">
+<p> press anykey to know the ascii code</p>
+<h1>{{var_one}}={{var_two}}</h1>
+{{x}}
+<h1> mouse location : x= {{xp}} y= {{yp}}
+<script>
+	//module
+	
+	var app=angular.module("keytest",[]);	
+	//controller
+	app.controller("ctrl",ctrl);
+	function ctrl($scope){
+		$scope.keytest=function(a){
+			$scope.var_one=a.keyCode;
+			$scope.var_two=a.key;
+			
+			
+		}
+		$scope.mouseloc=function(c){
+			$scope.xp=c.clientX;
+			$scope.yp=c.clientY;
+			
+		}
+	}
+	
+		
+
+</script>
+</body>
+</html>
